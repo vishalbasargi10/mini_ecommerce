@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px;
+            width: 100%;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+        .navbar button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .navbar button:hover {
+            background-color: #777;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2em;
+            margin-top: 2em;
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form div {
+            margin-bottom: 1em;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5em;
+            display: block;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button[type="submit"] {
+            padding: 0.7em;
+            color: white;
+            background-color: #27ae60;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        button[type="submit"]:hover {
+            background-color: #219150;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar static">
+        <a href="http://localhost:8080/">Home</a>
+        <a href="http://localhost:8080/categories">Categories</a>
+        <a href="http://localhost:8080/products">Products</a>
+        <a href="http://localhost:8080/wishlist">Wishlist</a>
+        <a href="http://localhost:8080/cart">Cart</a>
+        <a href="https://www.google.com/maps/place/BSF+Campus,+Yelahanka+Airforce+Base,+Bengaluru,+Karnataka/@13.1285302,77.6014413,15z/data=!4m6!3m5!1s0x3bae18ddd2f21293:0x3b40f5798aa2468!8m2!3d13.1315386!4d77.6020569!16s%2Fg%2F1hjhdmr3j?entry=ttu"><button>Delivery Location</button></a>
+        <a href="http://localhost:8080/myprofile">My Profile</a>
+    </nav>
+    <div class="container">
+        <h1>Add New Product</h1>
+        <form action="/products" method="POST">
+            <div>
+                <label for="name">Product Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" step="0.01" required>
+            </div>
+            <div>
+                <label for="category_id">Category:</label>
+                <select id="category_id" name="category_id" required>
+                    <% categories.forEach(function(category) { %>
+                        <option value="<%= category.category_id %>"><%= category.name %></option>
+                    <% }); %>
+                </select>
+            </div>
+            <button type="submit">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>

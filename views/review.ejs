@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            position: relative;
+            flex: 1 1 22%;
+            box-sizing: border-box;
+            margin: 1%;
+            padding: 2em 1em 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+        li:hover {
+            background-color: #e0e0e0;
+        }
+        h2 {
+            margin: 0.5em 0;
+        }
+        p {
+            margin: 0.3em 0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .navbar button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .navbar button:hover {
+            background-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="http://localhost:8080/">Home</a>
+        <a href="http://localhost:8080/categories">Categories</a>
+        <a href="http://localhost:8080/products">Products</a>
+        <a href="http://localhost:8080/wishlist">Wishlist</a>
+        <a href="http://localhost:8080/cart">Cart</a>
+        <a href="https://www.google.com/maps/place/BSF+Campus,+Yelahanka+Airforce+Base,+Bengaluru,+Karnataka/@13.1285302,77.6014413,15z/data=!4m6!3m5!1s0x3bae18ddd2f21293:0x3b40f5798aa2468!8m2!3d13.1315386!4d77.6020569!16s%2Fg%2F1hjhdmr3j?entry=ttu"><button>Delivery Location</button></a>
+        <a href="http://localhost:8080/myprofile">My Profile</a>
+    </nav>
+    <div class="head">
+        <h1>Reviews</h1>
+        <form action="/products/addNewReview" method="get">
+            <input type="hidden" name="product_id" value="<%=product_id %>">
+            <button type="submit">Add New Review</button>
+        </form>
+    </div>
+
+   
+
+    <ul>
+    <% reviews.forEach(review => { %>
+        <li>
+            <h2>Rating: <%= review.rating %></h2>
+            <p>Review: <%= review.review %></p>
+            <p>Date: <%= new Date(review.review_date).toLocaleString() %></p>
+        </li>
+    <% }); %>
+    </ul>
+</body>
+</html>

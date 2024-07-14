@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #829093f2;
+            padding: 3px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        .navbar button {
+            background-color: #7ad2ec; /* pastel pink */
+            color: #333;
+            border: 1px solid #333;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 600;
+        }
+
+        .navbar button:hover {
+            background-color: #ffb6c1;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 1em 0;
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        li {
+            margin: 1%;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1 1 20%;
+            box-sizing: border-box;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        li:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(255, 255, 255, 0.8); /* white shadow */
+        }
+
+        button {
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #7ad2ec; /* pastel pink */
+            color: #333;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+        }
+
+        .order-now {
+            background-color: #d1d1ff; /* pastel blue */
+        }
+
+        .order-now:hover {
+            background-color: #ffb6c1; /* pastel pink */
+        }
+
+        .delete {
+            background-color: #ffb6c1; /* pastel pink */
+        }
+
+        .delete:hover {
+            background-color: #d1d1ff; /* pastel blue */
+        }
+
+        form {
+            margin: 0;
+        }
+
+        .butn {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="http://localhost:8080/">Home</a>
+        <a href="http://localhost:8080/categories">Categories</a>
+        <a href="http://localhost:8080/products">Products</a>
+        <a href="http://localhost:8080/wishlist">Wishlist</a>
+        <a href="http://localhost:8080/cart">Cart</a>
+        <a href="https://www.google.com/maps/place/BSF+Campus,+Yelahanka+Airforce+Base,+Bengaluru,+Karnataka/@13.1285302,77.6014413,15z/data=!4m6!3m5!1s0x3bae18ddd2f21293:0x3b40f5798aa2468!8m2!3d13.1315386!4d77.6020569!16s%2Fg%2F1hjhdmr3j?entry=ttu">
+            <button>Delivery Location</button>
+        </a>
+        <a href="http://localhost:8080/myprofile">My Profile</a>
+    </nav>
+    <h1>Wishlist</h1>
+    <ul>
+        <% wishlist.forEach(product => { %>
+            <li>
+                <h2><%= product.name %></h2>
+                <p>Price: ₹<%= product.price %></p>
+                <p>Description: <%= product.description %></p>
+                <div class="butn">
+                    <form action="/cart" method="post">
+                        <input type="hidden" name="product_id" value="<%= product.product_id %>">
+                        <input type="hidden" name="name" value="<%= product.name %>">
+                        <input type="hidden" name="price" value="<%= product.price %>">
+                        <input type="hidden" name="description" value="<%=product.description%>">
+                        <button class="order-now">Order Now</button>
+                    </form>
+                    <form action="/wishlist/delete/<%= product.product_id %>" method="POST" style="display:inline;">
+                        <button type="submit" class="delete">Delete</button>
+                    </form>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+</body>
+</html>

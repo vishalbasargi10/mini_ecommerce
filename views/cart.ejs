@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #829093f2;
+            padding: 3px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        .navbar button {
+            background-color: #7ad2ec; /* pastel pink */
+            color: #333;
+            border: 1px solid #333;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 600;
+        }
+
+        .navbar button:hover {
+            background-color: #ffb6c1;
+            color: white;
+        }
+
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            flex: 1 1 calc(25% - 2em); /* Adjusted to ensure exactly 4 items per row with margins */
+            box-sizing: border-box;
+            margin: 1%;
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s;
+        }
+
+        li:hover {
+            background-color: #e0e0e0;
+        }
+
+        h2 {
+            margin: 0.5em 0;
+        }
+
+        p {
+            margin: 0.3em 0;
+        }
+
+        button {
+            padding: 0.5em 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: #d6a2e8; /* pastel purple */
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ffb6c1; /* pastel pink */
+        }
+
+        form[action="/cart"] button {
+            background-color: #3498db;
+            color: white;
+        }
+
+        a button {
+            background-color: #2ecc71;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1em;
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+
+        .butn {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .favorite-btn {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            color: red;
+            font-size: 1.5em;
+        }
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar static">
+        <a href="http://localhost:8080/">Home</a>
+        <a href="http://localhost:8080/categories">Categories</a>
+        <a href="http://localhost:8080/products">Products</a>
+        <a href="http://localhost:8080/wishlist">Wishlist</a>
+        <a href="http://localhost:8080/cart">Cart</a>
+        <a href="https://www.google.com/maps/place/BSF+Campus,+Yelahanka+Airforce+Base,+Bengaluru,+Karnataka/@13.1285302,77.6014413,15z/data=!4m6!3m5!1s0x3bae18ddd2f21293:0x3b40f5798aa2468!8m2!3d13.1315386!4d77.6020569!16s%2Fg%2F1hjhdmr3j?entry=ttu"><button>Delivery Location</button></a>
+        <a href="http://localhost:8080/myprofile">My Profile</a>
+    </nav>
+    <div class="top">
+        <h2>This Is Your Cart </h2>
+        <a href="/placed"><button>Order Now</button></a>
+    </div>
+  
+    <ul>
+        <% carts.forEach(product => { %>
+            <li>
+                <h2><%= product.name %></h2>
+                <p>Price: ₹<%= product.price %></p>
+                <p>Description: <%= product.description %></p>
+                
+                <div class="butn">
+                    <form action="/cart/delete/<%= product.product_id %>" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </div>
+            </li>
+        <% }); %>
+    </ul>
+
+    <div>
+        <h2>Total Price: ₹<%= totalPrice %></h2>
+    </div>
+</body>
+</html>

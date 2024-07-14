@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            background-color: #829093f2;
+            padding: 5px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: white;
+        }
+
+        .navbar button {
+            background-color: #f4f4f4;
+            color: #333;
+            border: 1px solid #333;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: 600;
+        }
+
+        .navbar button:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        .hero {
+            background: url('https://source.unsplash.com/1600x900/?shopping,store') no-repeat center center/cover;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a8d5e2, #f4a9a8, #8ec5fc, #e0c3fc);
+            background-size: 300% 300%;
+            animation: gradientBG 15s ease infinite;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 5em;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 2.5em;
+            margin: 10px 0;
+            font-weight: 300;
+        }
+
+        .main-content {
+            padding: 3em;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-content h2 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .main-content a {
+            text-decoration: none;
+        }
+
+        .main-content button {
+            background-color: #e5a3d1;
+            color: white;
+            border: none;
+            padding: 1em 2em;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 600;
+        }
+
+        .main-content button:hover {
+            background-color: #29c0ea;
+        }
+
+        footer {
+            background-color: #333;
+            color: #f4f4f4;
+            padding: 2em 1em;
+            text-align: center;
+        }
+
+        footer h2 {
+            font-size: 2em;
+            margin-bottom: 0.5em;
+            color: #f4f4f4;
+            font-weight: 600;
+        }
+
+        footer p {
+            font-size: 1em;
+            line-height: 1.5;
+            max-width: 800px;
+            margin: 0 auto 2em auto;
+            color: #c19ff0;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="http://localhost:8080/">Home</a>
+        <a href="http://localhost:8080/categories">Categories</a>
+        <a href="http://localhost:8080/products">Products</a>
+        <a href="http://localhost:8080/wishlist">Wishlist</a>
+        <a href="http://localhost:8080/cart">Cart</a>
+        <a href="https://www.google.com/maps/place/BSF+Campus,+Yelahanka+Airforce+Base,+Bengaluru,+Karnataka/@13.1285302,77.6014413,15z/data=!4m6!3m5!1s0x3bae18ddd2f21293:0x3b40f5798aa2468!8m2!3d13.1315386!4d77.6020569!16s%2Fg%2F1hjhdmr3j?entry=ttu"><button>Delivery Location</button></a>
+        <a href="http://localhost:8080/myprofile">My Profile</a>
+    </nav>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Our Store</h1>
+            <p>Find the best products here</p>
+        </div>
+    </div>
+    <div class="main-content">
+        <a href="http://localhost:8080/products"><button>Start Shopping</button></a>
+    </div>
+    <footer>
+        <h2>About Us</h2>
+        <p>Welcome to our online store! We offer a wide range of products to suit your needs. Browse through our categories to find what you're looking for. We are committed to providing the best shopping experience for our customers.</p>
+    </footer>
+</body>
+</html>
